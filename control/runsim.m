@@ -30,6 +30,7 @@ nquad = 1;
 time_tol = 25;
 
 % parameters for simulation
+% TODO
 params = crazyflie();
 
 %% **************************** FIGURES *****************************
@@ -45,6 +46,7 @@ quadcolors = lines(nquad);
 set(gcf,'Renderer','OpenGL')
 
 %% *********************** INITIAL CONDITIONS ***********************
+%% 设置初始条件和容错值
 fprintf('Setting initial conditions...\n')
 max_iter  = 5000;      % max iteration
 starttime = 0;         % start of simulation in seconds
@@ -65,7 +67,7 @@ end
 
 x         = x0;        % state
 
-pos_tol   = 0.01;
+pos_tol   = 0.01;    %容限
 vel_tol   = 0.01;
 
 %% ************************* RUN SIMULATION *************************
@@ -93,6 +95,7 @@ for iter = 1:max_iter
         end
 
         % Run simulation
+        % ODE 仿真
         [tsave, xsave] = ode45(@(t,s) quadEOM(t, s, qn, controlhandle, trajhandle, params), timeint, x{qn});
         x{qn}    = xsave(end, :)';
         
