@@ -14,6 +14,7 @@ Kd = [12;12;10];
 KpM = ones(3,1)*3000;
 KdM = ones(3,1)*300;
 
+% 期望加速度
 acc_des = qd{qn}.acc_des + Kd.*(qd{qn}.vel_des - qd{qn}.vel) + Kp.*(qd{qn}.pos_des - qd{qn}.pos);
 
 % Desired roll, pitch and yaw
